@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>smftricks:enhancedqr</id>
+	<name>Enhanced Quick Reply</name>
+	<version>1.0</version>
+	<type>modification</type>
+	<install for="2.1 - 2.1.99">
+		<!-- Mod Readme -->
+		<readme lang="english" parsebbc="true" type="file">readme/readme.english.txt</readme>
+		<!-- License -->
+		<license type="inline" parsebbc="false">
+			This Source Code Form is subject to the terms of the Mozilla Public
+			License, v. 2.0. If a copy of the MPL was not distributed with this
+			file, You can obtain one at https://www.mozilla.org/en-US/MPL/2.0/.
+		</license>
+		<!-- Theme Files -->
+		<require-dir name="Themes" destination="$boarddir">Theme files</require-dir>
+		<!-- Source File -->
+		<require-dir name="Sources" destination="$boarddir">Source file</require-dir>
+		<!-- Hooks -->
+		<hook hook="integrate_display_buttons" function="QuickReply::display_buttons" file="$sourcedir/Class-QuickReply.php" />
+		<hook hook="integrate_prepare_display_context" function="QuickReply::prepare_display_context" file="$sourcedir/Class-QuickReply.php" />
+		<hook hook="integrate_modify_topic_settings" function="QuickReply::modify_topic_settings" file="$sourcedir/Class-QuickReply.php" />
+		<hook hook="integrate_theme_options" function="QuickReply::theme_options" file="$sourcedir/Class-QuickReply.php" />
+		<hook hook="integrate_load_permissions" function="QuickReply::load_permissions" file="$sourcedir/Class-QuickReply.php" />
+		<hook hook="integrate_load_illegal_guest_permissions" function="QuickReply::load_illegal_guest_permissions" file="$sourcedir/Class-QuickReply.php" />
+		<!-- Redirect -->
+		<redirect url="?action=admin;area=postsettings;sa=topics" />
+	</install>
+	
+	<uninstall for="2.1 - 2.1.99">
+		<!-- Hooks Remove -->
+		<hook hook="integrate_display_buttons" function="QuickReply::display_buttons" file="$sourcedir/Class-QuickReply.php" reverse="true" />
+		<hook hook="integrate_prepare_display_context" function="QuickReply::prepare_display_context" file="$sourcedir/Class-QuickReply.php" reverse="true" />
+		<hook hook="integrate_modify_topic_settings" function="QuickReply::modify_topic_settings" file="$sourcedir/Class-QuickReply.php" reverse="true" />
+		<hook hook="integrate_theme_options" function="QuickReply::theme_options" file="$sourcedir/Class-QuickReply.php" reverse="true" />
+		<hook hook="integrate_load_permissions" function="QuickReply::load_permissions" file="$sourcedir/Class-QuickReply.php" reverse="true" />
+		<hook hook="integrate_load_illegal_guest_permissions" function="QuickReply::load_illegal_guest_permissions" file="$sourcedir/Class-QuickReply.php" reverse="true" />
+		<!-- Source File -->
+		<remove-file name="$sourcedir/Class-QuickReply.php">Source file</remove-file>
+		<!-- Languages -->
+		<remove-dir name="$languagedir/QuickReply">Language files</remove-dir>
+		<!-- Theme Files -->
+		<remove-file name="$themedir/css/quickreply.css">CSS file</remove-file>
+	</uninstall>
+</package-info>
