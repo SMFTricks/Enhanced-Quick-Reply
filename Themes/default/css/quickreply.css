@@ -9,22 +9,26 @@
 #quickreply div.cat_bar {
 	display: none;
 }
+#quickreply .errorbox {
+	margin-top: 0.5em;
+	margin-bottom: 1.5em;
+}
 #quickreply form {
+	padding-top: 0.5em;
 	position: relative;
-	margin-left: 60px;
+	margin-left: 50px;
 	padding-left: 15px;
-	padding-block: 15px;
 }
 #quickreply form:before {
 	content: "";
 	background-repeat: no-repeat;
 	background-size: contain;
 	position: absolute;
-	width: 60px;
-	height: 60px;
-	left: -60px;
+	width: 50px;
+	height: 50px;
+	left: -50px;
 	border-radius: 100%;
-	top: 20px;
+	/* top: 20px; */
 }
 #quickreply_options .roundframe {
 	background: transparent;
@@ -42,10 +46,12 @@
 #quickreply_options #post_confirm_buttons {
 	display: none;
 }
-#quickreply_options .sceditor-container {
-	max-height: 60px;
+#quickreply_options textarea {
+	max-height: 50px;
+	padding-block: 1em;
+	padding-inline: 1.5em;
+	border-radius: 5px;
 }
-
 @media (max-width: 480px) {
 	#quickreply_options .sceditor-container {
 		min-height: unset;
