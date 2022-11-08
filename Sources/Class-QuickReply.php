@@ -42,6 +42,9 @@ final class QuickReply
 		// Get the quick reply behavior
 		$context['QuickReply_behavior'] = self::behavior();
 
+		// Add the javascript var
+		addJavaScriptVar('QuickReply_behavior', $context['QuickReply_behavior'], true);
+
 		// What are we doing to the quick reply box?
 		switch ($context['QuickReply_behavior'])
 		{
@@ -59,27 +62,24 @@ final class QuickReply
 			case 'collapsed':
 				// CSS
 				addInlineCss('
-					#quickreply > div.cat_bar {
-						cursor: pointer;
-					}
-					#quickreply_options {
-						scale: 0;
-						height: 0;
-					}
+					#quickreply > div.cat_bar { cursor: pointer; }
+					#quickreply_options { scale: 0; height: 0; }
 				');
 				// JS
 				addInlineJavascript('
 					$(document).ready(function() {
-						$("#quickreply_options").hide();
+						document.getElementById("quickreply_options").style.display = "none";
 						document.getElementById("quickreply_options").style.height = "auto";
 						document.getElementById("quickreply_options").style.scale = 1;
 						// Toggle when clicking the title
-						$("#quickreply > .cat_bar").click(function() {
-							$("#quickreply > #quickreply_options").slideToggle();
+						document.getElementById("quickreply").querySelector(".cat_bar").addEventListener("click", function() {
+							$("#quickreply_options").slideToggle();
 						});
-						// Make it visible when quoting selected text
-						$("li.quoteSelected > a, li.quoteAll").click(function() {
-							$("#quickreply > #quickreply_options").show();
+						// Make it visible when quoting selected text or quoteAll
+						document.querySelectorAll("li.quoteSelected > a, li.quoteAll > a").forEach(function(element) {
+							element.addEventListener("click", function() {
+								document.getElementById("quickreply_options").style.display = "block";
+							});
 						});
 					});
 				', true);
@@ -97,30 +97,36 @@ final class QuickReply
 						background-image: url(' . $memberContext[$user_info['id']]['avatar']['href'] . ');
 					}
 				');
-				// Load the CSS
-				loadCSSFile('quickreply.css', ['minimize' => true, 'default_theme' => true, 'order_pos' => 12000], 'quickreply');
+				// Load the CSS file
+				loadCSSFile('quickreply.css', ['minimize' => true, 'default_theme' => true, 'order_pos' => 12000], 'enhanced_quickreply');
 				// JS
+				addJavaScriptVar('quickreply_placeholder', $txt['QuickReply_reply_value'], true);
 				addInlineJavascript('
 					$(document).ready(function() {
-						// Remove alert class from p
-						$("#quickreply p").removeClass("alert");
-						$("#quickreply p").addClass("errorbox");
-						// Add placeholder
-						$("#quickreply_options textarea").attr("placeholder", "' . $txt['QuickReply_reply_value'] . '");
-						$("#quickreply_options textarea").focus(function() {
-							// Unset the max-height
-							$("#quickreply_options .sceditor-container").css("max-height", "none");
+						document.getElementById("quickreply").getElementsByTagName("p")[0].classList.remove("alert");
+						document.getElementById("quickreply").getElementsByTagName("p")[0].classList.add("errorbox");
+
+						let quickreply_options = document.getElementById("quickreply_options");
+						let quickreply_textarea = quickreply_options.querySelector("textarea");
+						quickreply_textarea.placeholder = quickreply_placeholder;
+
+						// Textarea focus
+						quickreply_textarea.addEventListener("focus", function()
+						{
+							this.style.maxHeight = "none";
+							// Min Height for the toolbar
+							quickreply_options.querySelector(".sceditor-container").style.minHeight = "140px";
 							// Show the toolbar
-							$("#quickreply_options .sceditor-toolbar").show();
+							quickreply_options.querySelector(".sceditor-toolbar").style.display = "block";
+							// Show the emoticons
+							quickreply_options.querySelector(".sceditor-insertemoticon").style.display = "block";
 							// Show the buttons
-							$("#quickreply_options #post_confirm_buttons").css("display", "inline-flex");
+							document.getElementById("post_confirm_buttons").style.display = "inline-flex";
 						});
-						
 					});
 				', true);
 				break;
 		}
-
 	}
 
 	/**
