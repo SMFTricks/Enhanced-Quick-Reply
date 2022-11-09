@@ -40,7 +40,7 @@ class QuickReply
 		$context['QuickReply_behavior'] = self::behavior();
 
 		// Full?
-		if ($context['QuickReply_behavior'] == 'full')
+		if ($context['QuickReply_behavior'] === 'full')
 			return;
 
 		// Language?
