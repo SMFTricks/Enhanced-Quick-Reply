@@ -43,5 +43,6 @@
 		<remove-dir name="$languagedir/QuickReply">Language files</remove-dir>
 		<!-- Theme Files -->
 		<remove-file name="$themedir/css/quickreply.css">CSS file</remove-file>
+		<remove-file name="$themedir/scripts/quickreply.js">JS file</remove-file>
 	</uninstall>
 </package-info>
