@@ -8,10 +8,7 @@
  * @license https://www.mozilla.org/en-US/MPL/2.0/
  */
 
-if (!defined('SMF'))
-	die('No direct access...');
-
-final class QuickReply
+class QuickReply
 {
 	/**
 	 * Get the quick reply behavior for the user
@@ -42,17 +39,20 @@ final class QuickReply
 		// Get the quick reply behavior
 		$context['QuickReply_behavior'] = self::behavior();
 
-		// Add the javascript var
-		addJavaScriptVar('QuickReply_behavior', $context['QuickReply_behavior'], true);
+		// Full?
+		if ($context['QuickReply_behavior'] == 'full')
+			return;
+
+		// Language?
+		loadLanguage('QuickReply/');
+
+		// Add the javascript goodies
+		addJavaScriptVar('quickreply_placeholder', $txt['QuickReply_reply_value'], true);
+		loadJavascriptFile('quickreply.js', ['defer' => true, 'async' => true, 'default_theme' => true], 'enhanced_quickreply');
 
 		// What are we doing to the quick reply box?
 		switch ($context['QuickReply_behavior'])
 		{
-			// Full? Do nothing
-			case 'full':
-				return;
-				break;
-
 			// Disabled? Hide it
 			case 'disabled':
 				addInlineCss('#quickreply { display: none; }');
@@ -61,34 +61,13 @@ final class QuickReply
 			// Collapsed? Hide it and add some JS to show it
 			case 'collapsed':
 				// CSS
-				addInlineCss('
-					#quickreply > div.cat_bar { cursor: pointer; }
-					#quickreply_options { scale: 0; height: 0; }
-				');
+				addInlineCss('#quickreply > div.cat_bar { cursor: pointer; } #quickreply_options { scale: 0; height: 0; }');
 				// JS
-				addInlineJavascript('
-					$(document).ready(function() {
-						document.getElementById("quickreply_options").style.display = "none";
-						document.getElementById("quickreply_options").style.height = "auto";
-						document.getElementById("quickreply_options").style.scale = 1;
-						// Toggle when clicking the title
-						document.getElementById("quickreply").querySelector(".cat_bar").addEventListener("click", function() {
-							$("#quickreply_options").slideToggle();
-						});
-						// Make it visible when quoting selected text or quoteAll
-						document.querySelectorAll("li.quoteSelected > a, li.quoteAll > a").forEach(function(element) {
-							element.addEventListener("click", function() {
-								document.getElementById("quickreply_options").style.display = "block";
-							});
-						});
-					});
-				', true);
+				addInlineJavascript('$(document).ready(function() { quickreply_collaped_behavior(); });', true);
 				break;
 
 			// Minimalistic? Load the CSS file
 			case 'minimalistic':
-				// Language?
-				loadLanguage('QuickReply/');
 				// Add the avatar, hard way... inline.
 				loadMemberData($user_info['id']);
 				loadMemberContext($user_info['id']);
@@ -100,31 +79,7 @@ final class QuickReply
 				// Load the CSS file
 				loadCSSFile('quickreply.css', ['minimize' => true, 'default_theme' => true, 'order_pos' => 12000], 'enhanced_quickreply');
 				// JS
-				addJavaScriptVar('quickreply_placeholder', $txt['QuickReply_reply_value'], true);
-				addInlineJavascript('
-					$(document).ready(function() {
-						document.getElementById("quickreply").getElementsByTagName("p")[0].classList.remove("alert");
-						document.getElementById("quickreply").getElementsByTagName("p")[0].classList.add("errorbox");
-
-						let quickreply_options = document.getElementById("quickreply_options");
-						let quickreply_textarea = quickreply_options.querySelector("textarea");
-						quickreply_textarea.placeholder = quickreply_placeholder;
-
-						// Textarea focus
-						quickreply_textarea.addEventListener("focus", function()
-						{
-							this.style.maxHeight = "none";
-							// Min Height for the toolbar
-							quickreply_options.querySelector(".sceditor-container").style.minHeight = "140px";
-							// Show the toolbar
-							quickreply_options.querySelector(".sceditor-toolbar").style.display = "block";
-							// Show the emoticons
-							quickreply_options.querySelector(".sceditor-insertemoticon").style.display = "block";
-							// Show the buttons
-							document.getElementById("post_confirm_buttons").style.display = "inline-flex";
-						});
-					});
-				', true);
+				addInlineJavascript('$(document).ready(function() { quickreply_minimalistic_behavior(); });', true);
 				break;
 		}
 	}
