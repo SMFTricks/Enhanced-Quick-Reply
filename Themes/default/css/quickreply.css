@@ -52,6 +52,9 @@
 	padding-inline: 1.5em;
 	border-radius: 5px;
 }
+#quickreply_options .sceditor-container {
+	min-height: unset !important;
+}
 @media (max-width: 480px) {
 	#quickreply_options .sceditor-container {
 		min-height: unset;
