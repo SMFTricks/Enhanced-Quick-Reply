@@ -3,7 +3,8 @@
 # Enhanced Quick Reply
 ![License](https://img.shields.io/badge/License-MPL%202.0-248049) ![Hooks Only](https://img.shields.io/badge/Hooks%20Only-Yes-6041a3) ![SMF 2.1](https://img.shields.io/badge/SMF-2.1-3f73a0)
 
-Developed by [Diego Andrés](https://github.com/DiegoAndresCortes)
+* Developed by [Diego Andrés](https://github.com/DiegoAndresCortes)
+* Sponsored by [Golarze.pl](https://www.golarze.pl/index.php)
 
 ## Introduction
 Enhanced Quick Reply provides the ability to choose different behaviors for the quick reply look.
