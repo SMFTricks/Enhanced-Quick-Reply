@@ -131,6 +131,7 @@ class QuickReply
 		$context['theme_options'][] = [
 			'id' => 'QuickReply_behavior',
 			'label' => $txt['QuickReply_behavior_general'],
+			'description' => $txt['QuickReply_behavior_desc'],
 			'options' => [
 				'full' => $txt['QuickReply_full'],
 				'collapsed' => $txt['QuickReply_collapsed'],

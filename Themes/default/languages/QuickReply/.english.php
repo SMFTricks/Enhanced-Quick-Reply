@@ -10,7 +10,7 @@
 
 $txt['QuickReply_title'] = 'Enhanced Quick Reply';
 $txt['QuickReply_behavior_general'] = 'Quick Reply behavior';
-$txt['QuickReply_behavior_desc'] = 'Choose the <em>default</em> behavior of the quick reply box.';
+$txt['QuickReply_behavior_desc'] = 'Choose the <em>default</em> behavior of the quick reply box. <span class="smalltext">When disabled, quote selected text will not appear.</span>';
 $txt['QuickReply_full'] = 'Full';
 $txt['QuickReply_collapsed'] = 'Collapsed';
 $txt['QuickReply_minimalistic'] = 'Minimalistic';
