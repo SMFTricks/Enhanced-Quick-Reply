@@ -20,6 +20,7 @@ Enhanced Quick Reply provides the ability to choose different behaviors for the 
 
 ### Localization
 - ![English](https://www.simplemachines.org/site_images/lang/english.gif) English
+- ![Russian](https://www.simplemachines.org/site_images/lang/russian.gif) Russian by [Bugo](https://www.simplemachines.org/community/index.php?action=profile;u=229017)
 ---
 ### [Changelog](https://github.com/SMFTricks/Enhanced-Quick-Reply/blob/main/CHANGELOG.md)
 ### [GitHub](https://github.com/SMFTricks/Enhanced-Quick-Reply)

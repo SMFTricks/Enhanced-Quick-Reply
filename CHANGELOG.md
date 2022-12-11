@@ -1,5 +1,8 @@
 # Changelog
 
+#### 1.0.1 - 11 December 2022
+- ![Translation](https://smftricks.com/assets/changelog/language.png) Russian translation provided by [Bugo](https://www.simplemachines.org/community/index.php?action=profile;u=229017)
+
 #### 1.0 - 08 November 2022
 - ![New Feature](https://smftricks.com/assets/changelog/tag--plus.png) Initial Release.
 
