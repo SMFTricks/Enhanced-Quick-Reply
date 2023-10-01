@@ -2,7 +2,7 @@
 
 /**
  * @package Enhanced Quick Reply
- * @version 1.0
+ * @version 1.0.2
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
  * @copyright Copyright (c) 2022, SMF Tricks
  * @license https://www.mozilla.org/en-US/MPL/2.0/
@@ -34,7 +34,7 @@ class QuickReply
 	 */
 	public static function display_buttons() : void
 	{
-		global $context, $txt, $user_info, $memberContext;
+		global $context, $txt, $user_info, $memberContext, $modSettings;
 
 		// Get the quick reply behavior
 		$context['QuickReply_behavior'] = self::behavior();
@@ -73,7 +73,7 @@ class QuickReply
 				loadMemberContext($user_info['id']);
 				addInlineCss('
 					#quickreply form:before {
-						background-image: url(' . $memberContext[$user_info['id']]['avatar']['href'] . ');
+						background-image: url(' . (empty($user_info['is_guest']) ? $memberContext[$user_info['id']]['avatar']['href'] : $modSettings['avatar_url'] . '/default.png') . ');
 					}
 				');
 				// Load the CSS file

@@ -1,5 +1,9 @@
 # Changelog
 
+#### 1.0.2 - 01 October 2023
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Fixed undefined errors caused by guests.
+- ![Bug Fix](https://smftricks.com/assets/changelog/bug--minus.png) Minor javascript fixes.
+
 #### 1.0.1 - 11 December 2022
 - ![Translation](https://smftricks.com/assets/changelog/language.png) Russian translation provided by [Bugo](https://www.simplemachines.org/community/index.php?action=profile;u=229017)
 

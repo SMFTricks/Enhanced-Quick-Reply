@@ -1,6 +1,6 @@
 /**
  * @package Enhanced Quick Reply
- * @version 1.0
+ * @version 1.0.2
  * @author Diego Andrés <diegoandres_cortes@outlook.com>
  * @copyright Copyright (c) 2022, SMF Tricks
  * @license https://www.mozilla.org/en-US/MPL/2.0/
@@ -31,17 +31,17 @@ function quickreply_collaped_behavior()
 // Minimalistic
 function quickreply_minimalistic_behavior()
 {
-	// Get the alert element
-	let alertElement = document.getElementById('quickreply').getElementsByTagName('p');
+	// Get the alerts:
+	let topic_alerts = document.getElementById('quickreply').getElementsByTagName('p');
 
-	// Did we find anything?
-	if (alertElement.length > 0)
+	if (topic_alerts)
 	{
-		// Remove the alert class
-		alertElement[0].classList.remove('alert');
-
-		// Add the errorbox class
-		alertElement[0].classList.add('errorbox');
+		Array.from(topic_alerts).forEach(warning => {
+			// Remove alert class
+			warning.classList.remove("alert");
+			// Add errorbox class
+			warning.classList.add("errorbox");
+		})
 	}
 
 	// Get the quickreply options
