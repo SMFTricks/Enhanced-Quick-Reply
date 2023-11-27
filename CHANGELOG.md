@@ -1,6 +1,6 @@
 # Changelog
 
-#### 1.0.3 - 36 November 2023
+#### 1.0.3 - 26 November 2023
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Hide post header for guests when using 'minimalistic' for the default behavior.
 - ![Improvement](https://smftricks.com/assets/changelog/tag--pencil.png) Improve logic to handle possible null values in 'minimalistic' behavior.
 
