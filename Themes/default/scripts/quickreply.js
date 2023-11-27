@@ -7,7 +7,7 @@
  */
 
 // Collapsed
-function quickreply_collaped_behavior()
+function quickreply_collapsed_behavior()
 {
 	// Hide the quick reply box
 	document.getElementById('quickreply_options').style.display = 'none';
@@ -56,13 +56,26 @@ function quickreply_minimalistic_behavior()
 	{
 		// Remove the max-height limitation from the textarea
 		this.style.maxHeight = 'none';
+
 		// Min Height for the toolbar
-		quickreply_options.querySelector('.sceditor-container').style.minHeight = '140px';
+		let toolbar_container = quickreply_options.querySelector('.sceditor-container');
+		if (toolbar_container)
+		toolbar_container.style.minHeight = '140px';
 		// Show the toolbar
-		quickreply_options.querySelector('.sceditor-toolbar').style.display = 'block';
+		let toolbar = quickreply_options.querySelector('.sceditor-toolbar');
+		if (toolbar)
+			toolbar.style.display = 'block';
 		// Show the emoticons
-		quickreply_options.querySelector('.sceditor-insertemoticon').style.display = 'block';
+		let emoticons = quickreply_options.querySelector('.sceditor-insertemoticon');
+		if (emoticons)
+			emoticons.style.display = 'block';
 		// Show the buttons
-		document.getElementById('post_confirm_buttons').style.display = 'inline-flex';
+		let post_confirm_buttons = quickreply_options.querySelector('#post_confirm_buttons');
+		if (post_confirm_buttons)
+			post_confirm_buttons.style.display = 'inline-flex';
+		// Show the header
+		let post_header = quickreply_options.querySelector('#post_header');
+		if (post_header)
+			post_header.style.display = 'block';
 	});
 }

@@ -48,7 +48,7 @@ class QuickReply
 
 		// Add the javascript goodies
 		addJavaScriptVar('quickreply_placeholder', $txt['QuickReply_reply_value'], true);
-		loadJavascriptFile('quickreply.js', ['defer' => true, 'async' => true, 'default_theme' => true], 'enhanced_quickreply');
+		loadJavascriptFile('quickreply.js', ['defer' => true, 'default_theme' => true], 'enhanced_quickreply');
 
 		// What are we doing to the quick reply box?
 		switch ($context['QuickReply_behavior'])
@@ -63,7 +63,7 @@ class QuickReply
 				// CSS
 				addInlineCss('#quickreply > div.cat_bar { cursor: pointer; } #quickreply_options { scale: 0; height: 0; }');
 				// JS
-				addInlineJavascript('$(document).ready(function() { quickreply_collaped_behavior(); });', true);
+				addInlineJavascript('$(document).ready(function() { quickreply_collapsed_behavior(); });', true);
 				break;
 
 			// Minimalistic? Load the CSS file
