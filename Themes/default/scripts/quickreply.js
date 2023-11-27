@@ -60,7 +60,7 @@ function quickreply_minimalistic_behavior()
 		// Min Height for the toolbar
 		let toolbar_container = quickreply_options.querySelector('.sceditor-container');
 		if (toolbar_container)
-		toolbar_container.style.minHeight = '140px';
+			toolbar_container.style.minHeight = '140px';
 		// Show the toolbar
 		let toolbar = quickreply_options.querySelector('.sceditor-toolbar');
 		if (toolbar)
